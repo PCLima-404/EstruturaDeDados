@@ -1,0 +1,9 @@
+Pilha/stack
+empilhavel/stackable/
+Conjunto de operações/metodos que algo(classe) deve prover 
+
+TIPO DE RETORNO
+NOME
+PARÂMETRO DE ENTRADA
+
+ESTUDAR COMO CONTROLAR AS ESTRUTURAS, COMO PILHA DE MUSICAS
