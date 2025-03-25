@@ -1,0 +1,11 @@
+Fila (Queue) = Quando acaba os espaços o inicio não volta para o primeiro espaço e sim, acaba.
+Fila Circular(Cycle Queue)
+Fila com Dupla terminação (DeQUE)
+
+
+
+
+OPERAÇÕES BASICAS
+Enfileiravel{
+
+}
