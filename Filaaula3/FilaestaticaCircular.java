@@ -99,3 +99,35 @@ public void enfileirar(Object dado) {
 
 
 }
+ /*da pra fazer com o metodo atualizar
+
+ 
+  * private int avancar(int ponteiro){
+        return(ponteiro+1)%dados.length;
+    }
+
+     public Object desenfileirar() { 
+        Object aux = null;
+        if ((!estaVazia())) {
+            aux = dados[ponteiroInicio];
+            ponteiroInicio= avancar(ponteiroInicio);
+           /* if(ponteiroInicio==dados.length){
+                ponteiroInicio=0;
+            }
+            quantidade--;
+        }else{System.err.print("queue is empty");
+    }
+        return aux;
+       
+    }
+          @Override
+public void enfileirar(Object dado) {
+    if (!estaCheia()) {
+        ponteiroFim =avancar(ponteiroFim); 
+        dados[ponteiroFim] = dado;
+        quantidade++;
+    } else {
+        System.err.println("Queue is full");
+    }
+}
+  */
