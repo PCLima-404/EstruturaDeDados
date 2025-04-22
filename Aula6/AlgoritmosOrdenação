@@ -1,0 +1,8 @@
+ALGORITMOS DE ORDENAÇÃO por troca
+LISTAS ORDENADAS
+BUSCA DE DADOS
+
+BUBBLE SORT(Monta do ultimo pro primeiro por meio das comparações pra achar o maior até concluir o array)
+SELECTION SORT(Monta do primeiro pro ultimo por meio das comparações pra achar o menor até concluir o array mas esse só faz uma troca ao inves de varias igual o bubble então quando achar o menor segura ele até deixar ele no começo com 1 troca)
+INSERTION SORT
+
