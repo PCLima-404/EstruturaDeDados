@@ -169,6 +169,18 @@ public class ListaEstaticaCircular implements Listavel {
 
 	}
 
+	@Override
+	public boolean contem(Object dado) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'contem'");
+	}
+
+	@Override
+	public int primeiraOcorrencia(Object dado) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'primeiraOcorrencia'");
+	}
+
 
 
 

@@ -1,0 +1,34 @@
+Usar em todos os codigos a partir de agora
+//pesquisar sobre javadoc pra entender funcionamento de gerar documentação
+/**
+ * Exdplicação codigo
+ * @author Pedro César, observando aula de claudio
+ * @version 1.0
+ * @since 05/05/2025
+ */
+
+
+DOCUMENTAÇÂO
+precisa ter uma pasta 
+src - para código
+bin - para códivgo compilado
+doc - para documentação
+lib - para bibliotecas
+test - para testar
+
+
+PILHA DINAMICA 
+//Quando é simplesmente não precisa dizaer nada. QUando é dupla precisa falar que é duplamente ligada
+simplesmente ligada  - so tem referencia para o anterior
+ duplamente ligada ou encadeada - tem referencia tanto para o anterior quanto para o próximo
+ //Só vamos ver a duplamente ligada
+
+ DOCUMENTAÇÂO DE METODO
+ VARIA
+ ex:
+ descrição
+ documenta retorno @return
+ parametros @param
+ lançamento de exceção- porque lança a exceção @throws
+
+ BAIXAR JUNIT - 4.10.jar

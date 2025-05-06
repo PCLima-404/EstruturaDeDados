@@ -3,6 +3,37 @@ LISTAS ORDENADAS
 BUSCA DE DADOS
 
 BUBBLE SORT(Monta do ultimo pro primeiro por meio das comparações pra achar o maior até concluir o array)
+ex 
+5,3,4,1,2
+compara 5 com 3 e troca
+3,5,4,1,2
+compara 5 com 4 e troca
+3,4,5,1,2
+compara 5 com 1 e troca
+3,4,1,5,2
+compara 5 com 2 e troca
+3,4,1,2,5
+repete o processo para os próximos elementos até ordenar completamente
+1,2,3,4,5
 SELECTION SORT(Monta do primeiro pro ultimo por meio das comparações pra achar o menor até concluir o array mas esse só faz uma troca ao inves de varias igual o bubble então quando achar o menor segura ele até deixar ele no começo com 1 troca)
+ex 
+5,3,4,1,2
+acha o menor (1) e troca com o primeiro
+1,3,4,5,2
+acha o segundo menor (2) e troca com o segundo
+1,2,4,5,3
+acha o terceiro menor (3) e troca com o terceiro
+1,2,3,5,4
+acha o quarto menor (4) e troca com o quarto
+1,2,3,4,5
 INSERTION SORT
+(começa o segundo elemento e assume que todos a esquerda ja foram ordenados, compara o elemento com os anteriores e vai empurrando os maiores valores para frente ai insere o elemento atual na posição correta e repete o processo)
+ex 
+5,3,4,1,2
+compara 3 com 5
+35412
+compara 4 com 5 
+34512
+compara 4 com 3 e nao troca
+
 
