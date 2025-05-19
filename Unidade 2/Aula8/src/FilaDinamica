@@ -1,0 +1,2 @@
+//usar interface da fila dupla pq ela serve para a fila dinamica normal, so colocar uma exceção caso seja chamada alguma dessas operações com
+"operação não suportada"
