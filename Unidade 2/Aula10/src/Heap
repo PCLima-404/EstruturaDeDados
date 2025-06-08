@@ -1,0 +1,40 @@
+//Arvore binaria heap -> Completa a esquerda 
+
+
+
+      
+   0 //enche 0,1,2,3
+ 1    2
+3 4  5  6
+
+2 tipode de arvore heap, SEMPRE TEM QUE ESPECIFICAR QUAL 
+usado pra implementar filas de prioridade(maior numero maior prioridade por exemplo)
+MAX-HEAP
+MIN-HEAP
+
+na maxima o nó genitor é maior do que seus filhos então 0 é maior que  1,2,3
+observa se ela continuou sendo uma arvore heap, se não transformala dnv, ex: insere um novo numero maior que o pai(precisa reorganizar)
+se maior que o pai, troca, compara com o pai dnv de novo e se precisar 
+
+metodos heap
+int pai(int filho)  formula (int)(filho-1)/2 -se for divisão inteira
+int indiceFilhoEsquerdo(int pai) formula (pai*2+1)
+int indiceFilhoDireito(int pai) formula(pai*2+2)
+
+
+
+se remover a raiz por exemplo você pega o valor do ultimo indice e coloca no primeiro (reduz a quantidade)
+depois você verifica se é uma arvore heap e se não for, troca com o filho maior para ele virar o pai
+
+
+ex
+
+    nada
+  10       7
+5   2        20
+
+o 20 iria pra cima
+      20
+  10       7
+5   2        
+quando o 20 for atendido, o 2 sobe e então continua as trocas
