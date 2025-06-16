@@ -1,0 +1,17 @@
+Algoritmo mais rapido que temos 
+
+ele divide o problema em problemas menores
+PIOR CASO É QUANDO TA DECRESCENTE
+
+6,12,5,0,2,14,10,8 
+
+no lugar de tentar organizar o vetor inteiro ele pega um pivo
+
+ex 0 é o pivo
+(todos os elementos menores voce coloca a esquerda e os maiores a direita)
+
+depois pega um pivo na parte da esquerda e u na parte da direita e vai fazedo varios pivores 
+ex:outro pivo é o 10
+
+joga o 8 pra esquerda e o 14 para direita
+8,10,14

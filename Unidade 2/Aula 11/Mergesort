@@ -1,0 +1,4 @@
+tem um vetor
+
+divide em 2 ai divide de novo recursivamente até ficar varios vetores de 1 elemento
+e depois junta todos de forma ordenada

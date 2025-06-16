@@ -1,0 +1,6 @@
+A cada passada do algoritmo no vetor ele coloca o maior elemento no lugar
+
+O pai sempre deve ser maior que os filhos
+O QUE fazedo
+
+pega o vetor iteiro, aplica o HEAP e coloca o maior indice no lugar, depois pega o vetor inteiro -1 que ja ta no lugar certo e assim por diante

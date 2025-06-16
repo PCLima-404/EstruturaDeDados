@@ -17,7 +17,7 @@ Listavel<String> lista = new ListaDinamicaGenerica<>(5);
 lista.inserir(0,"A");
 lista.inserir(0,"B");
 lista.inserir(0,"C");
-lista.inserir(0,"D");
+lista.inserir(0,"D");   
 lista.inserir(0,"E");
 try{
     lista.inserir(0,"F");

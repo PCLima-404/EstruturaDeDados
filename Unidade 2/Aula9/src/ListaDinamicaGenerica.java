@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
  */
 
 public class ListaDinamicaGenerica<T> implements Listavel<T> {
-    private NodoDuplo ponteiroInicio;
-    private NodoDuplo ponteiroFim;
+    private NodoDuplo<T> ponteiroInicio;
+    private NodoDuplo<T> ponteiroFim;
     private int quantidade;
     private int tamanho;
 
@@ -27,24 +27,33 @@ public class ListaDinamicaGenerica<T> implements Listavel<T> {
     }
 
     @Override
-    public void inserir(int posicao, Object dado) {
-        if(estaVazia()){
-            //lança exeção
-        }if (!(posicao>=0&&posicao<=quantidade)){
-            //lanço exeção
-        }
-        NodoDuplo<T> ponteiroAuxiliar = ponteiroInicio;
-        for(int i=0;i<posicao;i++){
-            ponteiroAuxiliar = ponteiroAuxiliar.getProximo();
-        }
-        NodoDuplo<T> noTemp = new NodoDuplo<>();
-        noTemp.setProximo(ponteiroAuxiliar);
-        NodoDuplo<T> anterior = ponteiroAuxiliar.getAnterior();
-        noTemp.setAnterior(anterior);
-        ponteiroAuxiliar.setAnterior(noTemp);
-        anterior.setProximo(noTemp);
-        quantidade++;
+  public void inserir(int posicao, Object dado) {
+    if (estaVazia()) {
+        // lança exceção
     }
+
+    if (!(posicao >= 0 && posicao <= quantidade)) {
+        // lança exceção
+    }
+
+    NodoDuplo<T> ponteiroAuxiliar = ponteiroInicio;
+    for (int i = 0; i < posicao; i++) {
+        ponteiroAuxiliar = ponteiroAuxiliar.getProximo();
+    }
+
+    NodoDuplo<T> noTemp = new NodoDuplo<>();
+    noTemp.setProximo(ponteiroAuxiliar);
+
+    NodoDuplo<T> anterior = ponteiroAuxiliar.getAnterior();  // ← AQUI ocorre o NullPointerException
+    noTemp.setAnterior(anterior);
+
+    ponteiroAuxiliar.setAnterior(noTemp);
+    anterior.setProximo(noTemp);
+
+    quantidade++;
+}
+
+    
 
         /**
  	*adiciona novo elemento a lista
