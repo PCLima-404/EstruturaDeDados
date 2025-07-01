@@ -7,10 +7,35 @@ public class ABP<T> implements Arborizavel<T> {
     NoTriplo<T> getRaiz(){
         return raiz;
     }
-    
-    public void inserirREC(T dado) {
-        //FAZER EM CASA
+
+    public void inserirRecChamada(T dado) {
+    NoTriplo<T> novoNo = new NoTriplo<>();
+    novoNo.setDado(dado);
+
+    if (raiz == null) {
+        raiz = novoNo;
+    } else {
+        inserirRecursivo(raiz, novoNo);
     }
+}
+   
+private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
+    if ((Integer) novoNo.getDado() <= (Integer) atual.getDado()) {
+        if (atual.getEsquerda() != null) {
+            inserirRecursivo(atual.getEsquerda(), novoNo);
+        } else {
+            novoNo.setGenitor(atual);
+            atual.setEsquerda(novoNo);
+        }
+    } else {
+        if (atual.getDireita() != null) {
+            inserirRecursivo(atual.getDireita(), novoNo);
+        } else {
+            novoNo.setGenitor(atual);
+            atual.setDireita(novoNo);
+        }
+    }
+}
     @Override
     public void inserir(T dado) {
         NoTriplo<T> novoNo = new NoTriplo<>();
@@ -136,12 +161,26 @@ public class ABP<T> implements Arborizavel<T> {
         return sucessor;
     } 
 
-
+    public boolean existeRecChamada(T dado) {
+    return existeRec(raiz, dado);
+}
 
     //FAZER EM CASA
-    public boolean existeRec(NoTriplo<T> subarvore,T dado){
-
+   private boolean existeRec(NoTriplo<T> no, T dado) {
+    if (no == null) {
+        return false;
     }
+
+    if (no.getDado().equals(dado)) {
+        return true;
+    }
+
+    if ((Integer) dado < (Integer) no.getDado()) {
+        return existeRec(no.getEsquerda(), dado);
+    } else {
+        return existeRec(no.getDireita(), dado);
+    }
+}
    
 
     
