@@ -11,4 +11,5 @@ public interface Amontoavel<T> {
 	String imprimir();
 	boolean estaVazia();
 	boolean estaCheia();
+	
 }
