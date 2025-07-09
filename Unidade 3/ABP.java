@@ -218,5 +218,20 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
     public void limpar() {
        raiz=null;
     }
+    //questão 1 atividade gchat
+     public int contarNos() {
+        return contarNosRec(raiz);
+    }
+
+    
+    private int contarNosRec(NoTriplo no) {
+        if (no == null) 
+            return 0;
+
+        int esquerda = contarNosRec(no.getEsquerda());
+        int direita = contarNosRec(no.getDireita());
+
+        return 1 + esquerda + direita;
+    }
 
 }
