@@ -7,6 +7,10 @@ public class ABP<T> implements Arborizavel<T> {
     NoTriplo<T> getRaiz(){
         return raiz;
     }
+    @Override
+    public void limpar() {
+       raiz=null;
+    }
 
     public void inserirRecChamada(T dado) {
     NoTriplo<T> novoNo = new NoTriplo<>();
@@ -15,7 +19,7 @@ public class ABP<T> implements Arborizavel<T> {
     if (raiz == null) {
         raiz = novoNo;
     } else {
-        inserirRecursivo(raiz, novoNo);
+        inserirRecursivo(novoNo, novoNo);
     }
 }
    
@@ -55,6 +59,7 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
                     aux.setEsquerda(novoNo);
                     break;
                 }
+                aux = aux.getEsquerda();
             }else{
                 //devo ir pra direita
                 if( aux.getDireita()!=null){
@@ -214,10 +219,7 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
         }
     }
 
-    @Override
-    public void limpar() {
-       raiz=null;
-    }
+    
     //questão 1 atividade gchat
      public int contarNos() {
         return contarNosRec(raiz);
@@ -233,5 +235,12 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
 
         return 1 + esquerda + direita;
     }
+    private int contarFolhas(NoTriplo<T> no) {
+        if (no == null) return 0;
+        if (no.getEsquerda() == null && no.getDireita() == null) return 1;
+        
+    return contarFolhas(no.getEsquerda()) + contarFolhas(no.getDireita());
+}
+
 
 }
