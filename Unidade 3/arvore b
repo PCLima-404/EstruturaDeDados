@@ -1,0 +1,112 @@
+na arvore b e b+ o nó é um pouco mais complexo, é uma pagina, tem chaves e valores.
+ são muito utilizadas em indice de banco de dados
+
+essas paginas precisam ter muito mais elementos do q informações nas paginas 
+
+essa arvore é bem mais baixa que a binaria de pesquisa
+
+quantos dados por nó da arvore? depende da ordem da arvore, uma arvore de ordem x tem quantidade max de elementos x-1 e quantidade minima
+é o floor de x/2(arredonda para baixo, sempre. Me  smo se for 2.9 vai pra 2)
+
+adicionando elementos
+tem que ser em ordem crescente
+ex:(cabendo 4 elementos)
+3.
+
+3,7
+(desloca o 7 e adiciona o 5)
+3,5,7
+
+3,5,7,9
+adiciona mais 1
+precisa acontecer um split 
+1|3,5,7,9|
+split fica (pega o do meio e mantem, as metades divide para cada lado)
+    
+    |5
+1|3  e  7|9
+
+    |5
+1|3     6|7|9|12
+
+       |5
+1|3      6|7|8|9|12
+//verifica se é menor que 5 ai vai pra primeira, se for entre 5 e 8 vai pro segundo e se for maior que oito pro terceiro
+        |5|8
+1|3      6|7|       9|12
+
+        |5|8
+1|3      6|7|       9|11|12|15
+
+          |5|8
+1|3      6|7|       9|10|11|12|15
+
+             |5|8|11
+0|1|2|3|4      6|7|       9|10|       12|15
+//tem que ordenar jogando o 5,8 e 11 pra frente
+              2|5|8|11
+0|1|    3|4      6|7|       9|10|       12|15
+
+
+                        2|5|8|11|16
+0|1|    3|4      6|7|       9|10|       12|15|      17|18
+
+//agora verifica se é menor ou maior que 8
+                   8 
+ //agora verifica se é menor ou maior que esses numeros 
+          2|5|        |11|16
+//coloca no lugar que se encaixa
+0|1|    3|4      6|7|       9|10|       12|15|      17|18
+
+
+na ordem impar voce sempre sobre o do meio
+    se a ordem for par voce sobre o maior elemento da sub arvore esquerda
+ordem 4
+7,9,10 (adiciona 11)
+7,9,10,11 (sobe o 9)
+
+
+                   8 
+ 
+          2|5|        |11|16
+
+0|1|    3|4      6|7|       9|10|       12|15|      16|17|18
+
+se remove o 18 fica
+8 
+ 
+2|5|        |11|16
+
+0|1|    3|4      6|7|       9|10|       12|15|      16|17|
+se remove o 15 (fica abaixo do valor minimo então faz uma redistribuição)
+8 
+ 
+2|5|        |11|16
+
+0|1|    3|4      6|7|       9|10|       12|      16|17|
+redistribuindo
+
+         8 
+ 
+2|5|        |11|
+
+0|1|    3|4      6|7|       9|10|       12|16|16|17|
+(poderia juntar o 12 com o 16|17 ou com o 9|10)
+MAS A PRIORIDADE É PRA REDISTRIBUIÇÃO E NÃO CONCATENAÇÃO
+
+
+11 ficou ilegal então ficou assim
+ 
+2|5|8|11|
+
+0|1|    3|4      6|7|       9|10|       12|16|16|17|
+
+QUANDO O IRMÃO ADJACENTE TEM MAIS QUE O MINIMO ACONTECE UMA REDISTRIBUIÇÃO, QUANDO TEM O MINIMO ACONTECE UMA CONCATENAÇÃO
+
+se for pedido pra imprimir o conteudo da arvore, imprime os dados de forma sequencial
+
+se tiver 2 irmão e precisar concatenar então concatena com o da esquerda
+
+se tiver 2 irmão e precisar redistribuir então redistribui com o da esquerda
+
+SOBE O MAIOR DA ESQUERDA EM CASO PAR E O DO MEIO NO IMPAR
