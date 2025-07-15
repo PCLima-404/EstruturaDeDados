@@ -1,0 +1,62 @@
+arvore b+ é muito parecida com a arvore b mas a peculiaridade dela é
+
+
+
+No split dessa fica assim
+
+    (é copiado o menor da direita pra subir)
+    |3
+1|2  ->  3|7|9
+
+  |3
+1|2  ->  3|7|9|12|15
+
+  |3
+1|2  ->  3|7| -> 9|12|15
+
+
+  |3|
+1|2  ->  3|7| -> 9|12|15|16|17
+
+ |3|9
+1|2  ->  3|7| -> 9|12| -> 15|16|17
+
+quando chegar em 5 em cima divide por 2 e pega o menor da direita pra ficar em cima(o central)
+|3|9|15|17|19
+1|2  ->  3|7| -> 9|12| -> 15|16|-> 17|18   -> 19|20|21
+
+     15
+3|9     15|17|19
+
+
+1|2  ->  3|7| -> 9|12| -> 15|16|-> 17|18   -> 19|20|21
+//todos os dados ficam nas folhas
+
+as folhas são ligadas aos nós de cima( a folha que possuir o ultimo digito do nó de cima sendo copiado é a ultima folha ligada a aquele nó, as outras serão ligadas ao nó posterior)
+
+
+
+para remover, faz concatenações ou redestribuições(se ficar abaixo do minimo) ex:remove o 15
+  15
+3|9     17|19
+
+
+1|2  ->  3|7| -> 9|12| -> 15|16|-> 17|18   -> 19|20|21
+
+(Todos os dados do incice estão no dado mas o contrario não)
+
+ 15
+3|9     19
+
+
+1|2  ->  3|7| -> 9|12| -> |16|17|17|18   -> 19|20|21
+
+
+
+3|9|15|19
+
+1|2  ->  3|7| -> 9|12| -> |16|17|17|18   -> 19|20|21
+
+LEMBRAR QUE SEMPRE VAI SUBIR O MENOR DA DIREITA,
+
+ //INSERÇÂO, REMOÇÃO E IMPRESSÃO, SEMPRE EM ORDEM
