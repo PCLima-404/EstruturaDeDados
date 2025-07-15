@@ -244,3 +244,9 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
 
 
 }
+
+
+  public int altura(NoTriplo<T> no) {
+    if (no == null) return 0;
+    return 1 + Math.max(altura(no.getEsquerda()), altura(no.getDireita()));
+}
