@@ -4,5 +4,6 @@ public interface Arborizavel<T> {
     T apagar(T dado);
     boolean existe(T dado);
     void limpar();
-    
+     
+  
 }
