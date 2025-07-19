@@ -1,0 +1,24 @@
+PAra INSerir
+
+verifica se há nó raiz, se não adiciona no nó raiz
+
+se há, então verifica se N<raiz se for insere a esquerda
+
+se n>raiz entçao insere na direita
+
+verifica se a esquerda ou direita é nula antes de adicionar, se for adiciona. Se não o aux vira o  no da esquerda ou direita, faz a comparação se é maior ou menor novamente e verifica se é nulo novamente
+
+
+remoção
+se só tiver a raiz e apagar ai só apagar
+
+-Nó folha
+se quiser apagar o nó folha é só apagar
+
+
+quando Nó possui apenas um filho - escolhe o filho herdeiro direto e coloca no lugar do pai(tira as conexões antigas e linka o avó com o neto)
+
+Nó interno(com 2 filhos)
+Pra apagar pega o maior elemento da subarvore esquerda ou o menor elemento da subarvore direita e coloca no lugar então apaga a folha pra onde o nó intero foi
+(quando apagar esse nó vai apagar usando o primeiro ou segundo caso se o nó tiver 1 filho ou for raiz)
+Nó raiz se apagar troca o maior da esquerda ou maior da direita pra trocar com a raiz e apaga a raiz na folha

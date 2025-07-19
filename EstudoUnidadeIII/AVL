@@ -1,0 +1,80 @@
+//arvore binaria de buca/pesquisa balanceda 
+//fator de balanceamento, pode ser -1,0 e 1 . Que é altura de uma subarvore direita subarvore esquerda(se não for esses valores a arvore é desbalanceada)
+//folha sempre tem dator balanceament 0(como não tem filhos é 0-0=0)
+
+faz a rotação baseado no primeira de baixo pra cima que estiver com fator de balanceamento errado
+
+se ta pesada pra esquerda rodapra um lado
+se ta pra direita pra outro
+
+se fator balanceamento do filho e do pai tem o mesmo sinal então a rotação é simples, se forem sinais contrarios então é uma rotação dupla
+
+
+//Rotação simples a direita
+   20
+  5
+2
+fica:
+   5
+2    20
+
+
+
+//rotação simples a esquerda
+    a
+t1    b
+     t2   c
+
+RODA todos pra esquerda
+    b
+  a   c
+t1  t2
+
+
+//rotação dupla a direita
+
+roda pra esquerda e depois a direita
+//rotação dupla a esquerda
+roda pra direita e depois a esquerda
+
+
+
+se o nó tiver valor de balanceamento positivo voce olha o da esquerda (arovre da esquerda é mais pesada)
+se for + com + é uma reta pra esquerda(rotação simples para direita)
++com- é rotação dupla (joelho)
+
+se valor for negativo olha pra direita(arvore da direita é mais pesada)
+se for + com + é uma reta pra direita(rotação simples para esquerda)
++com- é rotação dupla (joelho)
+
+
+
+
+SE DESNIVEL >1 está a esquerda - ROTAÇÃO PARA DIREITA
+SE DESNIVEL <1 ESTA NA DIREITA - ROTAÇÃO PARA ESQUERDA
+
+rotaçao simples a direita-  peso ta na esquerda do filho da esquerda
+
+(PESO >1 E DADO INSERIDO A ESQUERDA DO FILHO ESQUERDO )
+if (desnivel > 1 && dado.compareTo(noAuxiliar.getEsquerda().getDado()) < 0)
+
+
+rotação simples a esquerda (peso na direita do filho da direita)
+(peso<1 e dado inserido a direita do filho direito)
+else if (desnivel < -1 && dado.compareTo(noAuxiliar.getDireita().getDado()) > 0)
+
+
+ CASO 3: Rotação Dupla à Direita (peso na direita do filho da esquerda)
+PESO> 1 E DADO INSERIDO A DIREITA DO FIHO ESQUERDO
+else if (desnivel > 1 && dado.compareTo(noAuxiliar.getEsquerda().getDado()) > 0)
+
+
+
+ CASO 4: Rotação Dupla à Esquerda (peso na esquerda do filho da direita)
+
+ PESO <1 e DADO INSERIDO A ESQUERDA DO FILHO direito
+ else if (desnivel < -1 && dado.compareTo(noAuxiliar.getDireita().getDado()) < 0)
+
+
+SE > E > ENTÃO É DUPLO A DIREITA
+SE < E < É DUPLO A ESQUERDA

@@ -1,0 +1,87 @@
+operações basicas levam tempo proporcinal ao numero de niveis da arvore
+
+
+equilibrio da subarvore de busca é medido com
+altura subarvore esquerda - altura subarvore direita
+
+se tiver pesado na direita, rotação a esquerda
+filho da direita vira nova raiz,
+ raiz original vira filho a esquerda
+filho da direita continua filho da direita da nova raiz
+
+(filho a esquerda do filho da direita)
+se a nova raiz tivesse um filho a esquerda, esse filho se torna filho a direita da antiga raiz
+
+
+
+se tiver pesado na esquerda, rotação para a direita
+filho da esquerda vira nova raiz
+
+filho da direita do filho da esquerda 
+se a nova raiz tivesse um filho a direita, esse filho se torna filho a esquerda da antiga raiz
+raiz original vira filho a direita da nova raiz
+
+
+
+
+
+DESEQUILIBRIO POSITIVO NA RAIZ ORIGINAL E NEGATIVO NA SUBARVORE DA DIREITA(indica que rotação simples não resolve então faz rotação simples a direita na subarvore da direita e depois rotação simples a esquerda na arvore original)
+
+rotação dupla a esquerda
+ex:
+a
+    c
+b
+rotação direita na subarvore da direita
+a
+  b
+     c
+rotação a esquerda na arvore original
+   b
+a    c 
+
+rotação dupla a direita
+
+DESEQUILIBRIO POSITIVO NA RAIZ ORIGINAL E NEGATIVO NA SUBARVORE DA ESQUERDA(indica que rotação simples não resolve então faz rotação simples a esquerda na subarvore da esquerda e depois rotação simples a direita na arvore original)
+   c
+a 
+   b  
+rotação a esquerda na subarvore a esquerda
+    c
+  b
+a
+rotação a direita na arvore original
+  b
+a   c
+
+
+COMO SaBer qual rotação usar????
+
+
+Calcula o fator de equilíbrio com a fórmula:
+fator = altura da subárvore direita − altura da subárvore esquerda
+
+Se o fator está entre -1 e 1, a árvore está balanceada
+→ Não é necessário fazer nada.
+
+Se o fator > 1 (desbalanceamento à direita):
+
+Se o fator de equilíbrio da subárvore direita < 0,
+→ há um desbalanceamento à esquerda da subárvore direita
+→ realiza rotação dupla à esquerda (direita + esquerda)
+
+Senão, realiza rotação simples à esquerda
+
+Se o fator < -1 (desbalanceamento à esquerda):
+
+Se o fator de equilíbrio da subárvore esquerda > 0,
+→ há um desbalanceamento à direita da subárvore esquerda
+→ realiza rotação dupla à direita (esquerda + direita)
+
+Senão, realiza rotação simples à direita
+
+
+      P
+   CK    SW
+ABDE    HF - LN   QR      TV    XYZ
+

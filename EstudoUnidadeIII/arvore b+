@@ -1,0 +1,140 @@
+arvore b+ é muito parecida com a arvore b mas a peculiaridade dela é
+
+No split dessa fica assim
+
+    (é copiado o menor da direita pra subir)
+    |3
+
+1|2 -> 3|7|9
+
+|3
+1|2 -> 3|7|9|12|15
+
+|3
+1|2 -> 3|7| -> 9|12|15
+
+|3|
+1|2 -> 3|7| -> 9|12|15|16|17
+
+|3|9
+1|2 -> 3|7| -> 9|12| -> 15|16|17
+
+quando chegar em 5 em cima divide por 2 e pega o menor da direita pra ficar em cima(o central)
+|3|9|15|17|19
+1|2 -> 3|7| -> 9|12| -> 15|16|-> 17|18 -> 19|20|21
+
+     15
+
+3|9 15|17|19
+
+1|2 -> 3|7| -> 9|12| -> 15|16|-> 17|18 -> 19|20|21
+//todos os dados ficam nas folhas
+
+as folhas são ligadas aos nós de cima( a folha que possuir o ultimo digito do nó de cima sendo copiado é a ultima folha ligada a aquele nó, as outras serão ligadas ao nó posterior)
+
+para remover, faz concatenações ou redestribuições(se ficar abaixo do minimo) ex:remove o 15
+15
+3|9 17|19
+
+1|2 -> 3|7| -> 9|12| -> 15|16|-> 17|18 -> 19|20|21
+
+(Todos os dados do incice estão no dado mas o contrario não)
+
+15
+3|9 19
+
+1|2 -> 3|7| -> 9|12| -> |16|17|17|18 -> 19|20|21
+
+3|9|15|19
+
+1|2 -> 3|7| -> 9|12| -> |16|17|17|18 -> 19|20|21
+
+LEMBRAR QUE SEMPRE VAI SUBIR O MENOR DA DIREITA,
+
+//INSERÇÂO, REMOÇÃO E IMPRESSÃO, SEMPRE EM ORDEM
+
+diferete da arvore b, os indices intermediarios sempre vão ser os idices e os dados são as folhas e as folhas são ligadas por um tipo de lista encadeada (por um link lógico)
+muito utilizadas pra indice de banco de dados
+->
+
+DIFERENÇA DA BUSCA B PRA B+ É QUA COMO NA B+ OS ANGULOS INTERNOS NÃO TEM DADOS, ELES APENAS INDICAM PRA ONDE VOCÊ DEVE IR(ESQUERDA OU DIREITA) SE O NUMERO FOR MAIOR OU MENOR QUE O INDICE
+ex:num impar
+|3
+
+1|2 -> 3|7|9
+
+ex num par :
+com m = 4
+S,E,A,R,C,H,M,P,L,Y
+
+A|E|R|S
+
+R|
+A|C|-> R|S
+
+inserindo
+R|
+A|C|E|H -> R|S
+Split
+E|R (SEMPRE DEIXAR ORGANIZADO AO SUBIR)
+A|C ->|E|H -> R|S
+
+E|M|R|X (se em cima encher)
+A|C ->|E|H -> R|S
+SE ENCHER NA RAIZ
+ai o split puxa SE o menor da esqueda sem copiar(sem repetir) **\*\*\*\***\*\***\*\*\*\***, só tem chaves em folhas
+R
+E|M X
+
+não da pra tirar da raiz ou nós intermediarios
+raiz e nós intermediarios só somem se juntar 2 nós
+(arvore nivel 4) (4/2-1 = num elemento min)
+
+                                 53
+         15|25|28                                    91
+
+8|13 15|21 25|26 28|36 53| 75 91|95
+
+remove 53, 91 e 8
+53
+15|25|28 91
+|13 15|21 25|26 28|36 |75 |95
+
+remove 13, precisa remover o link entre as paginas(no caso o pai, 15)
+53
+|25|28 91
+15|21 25|26 28|36 |75 |95
+
+remove o 95 //precisa apagar o pai que divide do 75
+
+                          53
+      |25|28                                  91
+
+15|21 25|26 28|36 |75 |95
+
+então fica
+
+             25|28|53
+
+15|21 25|26 28|36 |75
+
+Inserção em B+ Tree, ordem m=4.
+Insira as chaves:
+3, 7, 1, 5, 9, 2, 8, 4
+Mostre a estrutura final dos nós internos e folhas, e o encadeamento das folhas.
+
+      3,5,8
+
+1,2->3,4->5,7->8,9
+
+ordem 4
+[ 15 | 30 ]
+[5|10|12] -> [15|18|20] -> [30|35|40]
+
+quando faz a fusão de 2 paginas que não sao folhas você puxa a raiz
+SE for em folhas, voce REMOVE o pai
+
+            7
+
+3,5 9,11
+[1,2]->[3,4,]->[5,6]->[7,8]-> [9,10]->[11,12,13]
