@@ -1,51 +1,28 @@
-package EstudoUnidadeIII;
-
-public class ABP<T> {
+public class ABP<T> implements Arborizavel<T> {
     NoTriplo<T> raiz;
-    
-      public ABP(){
+
+    public ABP(){
         raiz=null;
     }
     NoTriplo<T> getRaiz(){
         return raiz;
     }
-  public void inserir(T dado) {
-        NoTriplo<T> novoNo = new NoTriplo<T>();
-        novoNo.setDado(dado);
+    @Override
+    public void limpar() {
+       raiz=null;
+    }
 
-        if (raiz == null) {
+    public void inserirRecChamada(T dado) {
+    NoTriplo<T> novoNo = new NoTriplo<>();
+    novoNo.setDado(dado);
+
+    if (raiz == null) {
         raiz = novoNo;
-        return;
+    } else {
+        inserirRecursivo(novoNo, novoNo);
     }
-        NoTriplo<T> aux = raiz;
-
-        while(true){
-            if((Integer)dado <= (Integer) aux.getDado()){
-                if(aux.getEsquerda()!=null){
-
-                    aux=aux.getEsquerda();
-                }else{
-                   
-                    novoNo.setGenitor(aux);
-                    aux.setEsquerda(novoNo);
-                    break;
-                }
-            }else{
-             
-                if( aux.getDireita()!=null){
-                  
-                    aux=aux.getDireita();
-                }else{
-            
-                    novoNo.setGenitor(aux);
-                    aux.setDireita(novoNo);
-                    break;
-                }
-            }
-        }
-        
-    }
-    
+}
+   
 private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
     if ((Integer) novoNo.getDado() <= (Integer) atual.getDado()) {
         if (atual.getEsquerda() != null) {
@@ -63,76 +40,255 @@ private void inserirRecursivo(NoTriplo<T> atual, NoTriplo<T> novoNo) {
         }
     }
 }
-  public void inserirRecChamada(T dado) {
-    NoTriplo<T> novoNo = new NoTriplo<>();
-    novoNo.setDado(dado);
+    @Override
+    public void inserir(T dado) {
+        NoTriplo<T> novoNo = new NoTriplo<>();
+        novoNo.setDado(dado);
+        NoTriplo<T> aux = raiz;
 
-    if (raiz == null) {
-        raiz = novoNo;
+        while(true){
+            if((Integer)dado <= (Integer) raiz.getDado()){
+                //devo ir para esquerda
+                if(aux.getEsquerda()!=null){
+                      
+                    //vou para esquerda
+                    aux=aux.getEsquerda();
+                }else{
+                    //insiro aqui
+                    novoNo.setGenitor(aux);
+                    aux.setEsquerda(novoNo);
+                    break;
+                }
+                aux = aux.getEsquerda();
+            }else{
+                //devo ir pra direita
+                if( aux.getDireita()!=null){
+                    //vou pra direita
+                    aux=aux.getDireita();
+                }else{
+                    //insiro aqui
+                    novoNo.setGenitor(aux);
+                    aux.setDireita(novoNo);
+                    break;
+                }
+            }
+        }
+        
+    }
+ public T apagar(T dado) {
+        NoTriplo<T> noAuxiliar = buscar(dado);
+        if (noAuxiliar == null)   
+            return null;
+
+        if (noAuxiliar.getEsquerda() == null &&
+                noAuxiliar.getDireita() == null)
+            apagarNoFolha(noAuxiliar);
+        else if (noAuxiliar.getEsquerda() == null ||
+                noAuxiliar.getDireita() == null)
+            apagarComUmFilho(noAuxiliar);
+        else
+            apagarComDoisFilhos(noAuxiliar);
+
+        return dado;
+    }    
+
+    private NoTriplo<T> buscar(T dado) {
+        NoTriplo<T> aux = raiz;
+        while (aux != null) {
+            if (dado.equals(aux.getDado())) {
+                return aux;
+            } else if ((Integer)dado < (Integer)aux.getDado()) {
+                aux = aux.getEsquerda();
+            } else {
+                aux = aux.getDireita();
+            }
+        }
+        return null; 
+    }
+
+    private void apagarNoFolha(NoTriplo<T> nodo) {
+        NoTriplo<T> pai = nodo.getGenitor();
+        if (pai == null) {
+            raiz = null;
+        } else {
+            if (nodo.equals(pai.getEsquerda()))
+                pai.setEsquerda(null);
+            else       
+                pai.setDireita(null);
+
+            nodo.setGenitor(null);
+        }
+    }
+
+    private void apagarComUmFilho(NoTriplo<T> nodo) {
+        NoTriplo<T> avo = nodo.getGenitor();
+        NoTriplo<T> neto = (nodo.getEsquerda() != null ? nodo.getEsquerda() : nodo.getDireita());        
+        if (avo == null) {
+            raiz = neto;
+            raiz.setGenitor(null);
+        } else {
+            neto.setGenitor(avo);
+            if (nodo.equals(avo.getEsquerda())) {
+                avo.setEsquerda(neto);
+            } else {
+                avo.setDireita(neto);
+            }
+        }
+    }
+
+    private void apagarComDoisFilhos(NoTriplo<T> nodo) {
+        NoTriplo<T> sucessor = encontraMenorDireita(nodo);
+        
+        T temp = nodo.getDado();
+        nodo.setDado(sucessor.getDado());
+        sucessor.setDado(temp);
+
+        if (sucessor.getEsquerda() == null && 
+        sucessor.getDireita() == null) {
+            apagarNoFolha(sucessor);
+        } else {
+            apagarComUmFilho(sucessor);
+        }
+    } 
+
+    private NoTriplo<T> encontraMenorDireita(NoTriplo<T> nodo) {
+        NoTriplo<T> sucessor = nodo.getDireita();
+        while (sucessor.getEsquerda() != null)
+            sucessor = sucessor.getEsquerda();
+
+        return sucessor;
+    }  
+    private NoTriplo<T> encontraMaiorEsquerda(NoTriplo<T> nodo) {
+        NoTriplo<T> sucessor = nodo.getEsquerda();
+        while (sucessor.getDireita() != null)
+            sucessor = sucessor.getDireita();
+
+        return sucessor;
+    } 
+
+    public boolean existeRecChamada(T dado) {
+    return existeRec(raiz, dado);
+}
+
+    //FAZER EM CASA
+   private boolean existeRec(NoTriplo<T> no, T dado) {
+    if (no == null) {
+        return false;
+    }
+
+    if (no.getDado().equals(dado)) {
+        return true;
+    }
+
+    if ((Integer) dado < (Integer) no.getDado()) {
+        return existeRec(no.getEsquerda(), dado);
     } else {
-        inserirRecursivo(novoNo, novoNo);
+        return existeRec(no.getDireita(), dado);
     }
 }
-//imprime raiz, ai todos da esquerda, ai todos da direita da esquerda, ai da direita, vai verificando a esquerda da direita e todos da direita da direita
-    public String ImprimirPreOrdemRec(NoTriplo<T> raizAtual){
-        if(raizAtual==null){
-            return " ";
-        }
-        return raizAtual.getDado() + " " + ImprimirPreOrdemRec(raizAtual.getEsquerda())+ " " +ImprimirPreOrdemRec(raizAtual.getDireita());
+   
 
-    }
-    public String imprimirPreOrdem(){
-        return ImprimirPreOrdemRec(raiz);
-    }
-    public String ImprimirEmOrdemRec(NoTriplo<T> raizAtual){
-        if(raizAtual==null){
-            return " ";
+    
+
+    @Override
+    public boolean existe1(T dado) {
+    NoTriplo<T> novoNo = new NoTriplo<>();
+    
+        NoTriplo<T> aux = raiz;
+        boolean encontrado=false;
+
+        while(true){
+            if((Integer)dado <= (Integer) raiz.getDado()){
+                //devo ir para esquerda
+                if(aux.getEsquerda()!=null){
+                      
+                    //vou para esquerda
+                    aux=aux.getEsquerda();
+                }else{
+                   return false;
+                }
+            }else{
+                //devo ir pra direita
+                if( aux.getDireita()!=null){
+                    //vou pra direita
+                    aux=aux.getDireita();
+                }else{
+                   return false;
+                }
+            }
         }
-        //Imprime na ordem crescente, ultimo da esquerda, ai o de cima, ai o da direita do de cima
-        return ImprimirEmOrdemRec(raizAtual.getEsquerda()) + " " + raizAtual.getDado() + " " +ImprimirEmOrdemRec(raizAtual.getDireita());
     }
-    public String imprimirEmOrdem(){
-        return ImprimirEmOrdemRec(raiz);
+
+    
+    //questão 1 atividade gchat
+     public int contarNos() {
+        return contarNosRec(raiz);
     }
-    //imprime o mais a esquerda, depois o irmão dele e ai o pai. Depois o mais a direita, irmão e pai
-    public String ImprimirPosOrdemRec(NoTriplo<T> raizAtual){
-        if(raizAtual==null){
-            return " ";
-        }else{
-            return ImprimirPosOrdemRec(raizAtual.getEsquerda()) +" " + ImprimirPosOrdemRec(raizAtual.getDireita())+" " + raizAtual.getDado();
-        }
+
+    
+    private int contarNosRec(NoTriplo<T> no) {
+        if (no == null) 
+            return 0;
+
+        int esquerda = contarNosRec(no.getEsquerda());
+        int direita = contarNosRec(no.getDireita());
+
+        return 1 + esquerda + direita;
+    }
+    //questão gchat
+    private int contarFolhas(NoTriplo<T> no) {
+        if (no == null) return 0;
+        if (no.getEsquerda() == null && no.getDireita() == null) return 1;
         
-    }
-    public String imprimirPosOrdem(){
-        return ImprimirPosOrdemRec(raiz);
+    return contarFolhas(no.getEsquerda()) + contarFolhas(no.getDireita());
+}
+
+    //questão gchat
+    public int altura(NoTriplo<T> no) {
+        if (no == null) return 0;
+        return 1 + Math.max(altura(no.getEsquerda()), altura(no.getDireita()));
     }
 
+public int contarNosFolhas(NoTriplo<T> no) {
+    return contarFolhas(no); // reutiliza o método anterior
+}
 
-public void limpar(){
-    raiz = null;
+public int contarNosInternos(NoTriplo<T> no) {
+    if (no == null) return 0;
+    if (no.getEsquerda() == null && no.getDireita() == null) return 0;
+    return 1 + contarNosInternos(no.getEsquerda()) + contarNosInternos(no.getDireita());
+}
+
+public int encontrarMaiorValor(NoTriplo<T> no) {
+    if (no == null) return Integer.MIN_VALUE;
+    int valorAtual = (Integer) no.getDado();
+    int maiorEsq = encontrarMaiorValor(no.getEsquerda());
+    int maiorDir = encontrarMaiorValor(no.getDireita());
+    return Math.max(valorAtual, Math.max(maiorEsq, maiorDir));
 }
 
 
-
-public NoTriplo<T> buscar(T dado){
-    NoTriplo<T> aux = raiz;
-    while (aux!=null) {
-        if(dado.equals(aux.getDado())){
-            return aux;
-        }
-        if((Integer)dado<(Integer)aux.getDado()){
-            aux= aux.getEsquerda();
-        }else{
-            aux=aux.getDireita();
-        }
-        
-    }
-    return null;
-
-
-
+public int contarSubarvoreEsquerda() {
+    return contarNos(raiz.getEsquerda());
 }
-//adicionar  apagar e existe
 
+public int contarSubarvoreDireita() {
+    return contarNos(raiz.getDireita());
+}
+
+private int contarNos(NoTriplo<T> no) {
+    if (no == null) return 0;
+    return 1 + contarNos(no.getEsquerda()) + contarNos(no.getDireita());
+}
+public boolean saoIdenticas(NoTriplo<T> a, NoTriplo<T> b) {
+    if (a == null && b == null) return true;
+    if (a == null || b == null) return false;
+
+    boolean dadosIguais = a.getDado().equals(b.getDado());
+
+    return dadosIguais &&
+           saoIdenticas(a.getEsquerda(), b.getEsquerda()) &&
+           saoIdenticas(a.getDireita(), b.getDireita());
+}
 
 }
